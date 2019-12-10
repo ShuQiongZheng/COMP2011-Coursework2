@@ -1,0 +1,53 @@
+{% extends "bootstrap/base.html" %}
+<!-- Extends bootstrap/base.html, using some of its basic layouts, and so on-->
+
+{% import "bootstrap/utils.html" as utils %}
+<!-- Introduce the tool 'bootstrap/utils.html', which provides various prompt information such as success warning-->
+
+{% block title %}Book_Communication{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link href="/static/style.css" rel="stylesheet" type="text/css"/>
+    {% block head_content %} {% endblock %}
+{% endblock  %}
+
+{% block navbar %}
+   <nav class="navbar navbar-expand-lg navbar-light bg-light navcolor">
+       <a class="navbar-brand navtext" href="{{ url_for('web.Show_book_list') }}">Book_Communication</a>
+
+       {% if session.username %}
+            <ul class="nav navbar-nav pull-right">
+                <li><a class="btn navtext" >Welcome {{ session.username  }} </a></li>
+                <li><a class="btn navtext" href="{{ url_for('web.logout') }}">logout</a></li>
+            </ul>
+       {% else %}
+            <ul class="nav navbar-nav pull-right">
+                <li><a class="btn navtext" href="{{ url_for('web.register') }}">Register</a></li>
+            </ul>
+       {% endif %}
+
+   </nav>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            {% with messages = get_flashed_messages(with_categories=True) %}
+                {% for message in messages %}
+                    {% if message %}
+                        {{ utils.flashed_messages(messages,dismissible=True) }}
+                    {% else %}
+                        {{ error }}
+                    {% endif %}
+                {% endfor %}
+            {% endwith %}
+        </div>
+
+         <!-- body block -->
+        {% block page_content %} {% endblock %}
+
+    </div>
+
+{% endblock %}

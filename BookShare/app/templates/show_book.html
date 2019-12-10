@@ -1,0 +1,26 @@
+{% extends "bases.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_content %}
+    <div class="container">
+      <!-- Content here -->
+        <div class="jumbotron">
+          <h1 class="display-4">Discover the beauty of difference</h1>
+          <p class="lead">Reading other people's thoughts, thinking differently</p>
+          <hr class="my-4">
+        </div>
+
+        <div class="blog-post">
+            <h2 class="blog-post title">{{ form.title }}</h2>
+            <p  class="blog-post-meta">{{ form.create_time }} {{ form.user_name  }}</p>
+            <p>{{ string }} </p>
+            <hr/>
+            <p>{{ form.description }}</p>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary btncolor " onclick="location.href='{{ url_for('web.like',id=form.id) }}'" >like{{ form.like }}</button>
+            <a href="{{ url_for('web.Show_book_list') }}" class="btn btn-primary btncolor" role="button">Back</a>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+[2019-12-09 09:25:16,668][views.py:12][INFO][26920] - Info message
+[2019-12-09 09:25:16,668][views.py:13][WARNING][26920] - Warning msg
+[2019-12-09 09:25:16,668][views.py:14][ERROR][26920] - Error msg!!!
+[2019-12-09 09:25:19,276][views.py:12][INFO][26920] - Info message
+[2019-12-09 09:25:19,276][views.py:13][WARNING][26920] - Warning msg
+[2019-12-09 09:25:19,276][views.py:14][ERROR][26920] - Error msg!!!
+[2019-12-09 09:34:21,465][views.py:59][INFO][56716] - Zhengshuqiong failed to add one book
+[2019-12-09 19:39:21,593][views.py:66][INFO][37648] - Zhengshuqiong failed to add one book
+[2019-12-09 21:00:52,344][views.py:186][INFO][34896] - Zhengshuqiong failed to log in
+[2019-12-09 21:01:19,718][views.py:186][INFO][34896] - Zhengshuqiong failed to log in
+[2019-12-09 21:13:56,829][views.py:187][INFO][57216] - Zhengshuqiong failed to log in
+[2019-12-09 21:15:15,836][views.py:189][INFO][13680] - Zhengshuqiong failed to log in
+[2019-12-09 21:16:58,910][views.py:189][INFO][5252] - Zhengshuqiong failed to log in
+[2019-12-09 21:46:45,300][views.py:188][INFO][49552] - Salley failed to log in
+[2019-12-09 22:22:02,030][views.py:188][INFO][20796] - Zhengshuqiong failed to log in
+[2019-12-09 22:33:09,185][views.py:194][INFO][43584] - Zhengshuqiong failed to log in

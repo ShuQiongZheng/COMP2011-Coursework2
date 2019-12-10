@@ -1,0 +1,74 @@
+{% extends "bases.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_content %}
+
+    <table class="table table-hover table-striped">
+        <thead class="table-bordered">
+           <tr>
+                <th scope="col">Num</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Like</th>
+                <th scope="col">Create_Time</th>
+                <th scope="col">Read</th>
+           </tr>
+        </thead>
+
+        <tbody>
+            {% for i in booklists %}
+                 <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ i.title }}</td>
+                    <td>{{ i.user_name }}</td>
+                    <td>{{ i.like }}</td>
+                    <td>{{ i.create_time}}</td>
+
+                    <td>
+                        <a href="{{ url_for('web.show_book', id=i.id) }}" class="btn btn-primary btncolor" role="button">More</a>
+                    </td>
+                 </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('web.my_book') }}" class="btn btn-primary btncolor" role="button">my_book</a>
+
+    {#
+    <a href="{{ url_for('web.show_algorithms') }}" class="btn btn-primary btncolor" role="button">algorithms</a>
+    <a href="{{ url_for('web.my_book') }}" class="btn btn-primary btncolor" role="button">programming</a>
+    <a href="{{ url_for('web.my_book') }}" class="btn btn-primary btncolor" role="button">math</a>
+    <a href="{{ url_for('web.my_book') }}" class="btn btn-primary btncolor" role="button">software</a>
+    <a href="{{ url_for('web.my_book') }}" class="btn btn-primary btncolor" role="button">other</a>
+    #}
+
+
+    <nav aria-label="Search results pages">
+      <ul class="pagination">
+            {% if paginate.has_prev %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('web.Show_book_list') }}?page={{ paginate.prev_num }}">Previous</a>
+                </li>
+            {% endif %}
+
+
+      {% for page in paginate.iter_pages() %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('web.Show_book_list') }}?page={{ page }}">
+                {% if not page %}
+                    ...
+                {% else %}
+                    {{ page }}
+                {% endif %}
+            </a>
+        </li>
+      {% endfor %}
+
+        {% if paginate.has_next %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('web.Show_book_list') }}?page={{ paginate.next_num }}">Next</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "bases.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_content %}
+
+    <table class="table table-hover table-striped">
+        <thead class="table-bordered">
+           <tr>
+                <th scope="col">Num</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Like</th>
+                <th scope="col">Create_Time</th>
+                <th scope="col">Read</th>
+                <th scope="col">Modify</th>
+                <th scope="col">Delete</th>
+
+           </tr>
+        </thead>
+
+        <tbody>
+            {% for i in booklist %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ i.title }}</td>
+                    <td>{{ i.user_name }}</td>
+                    <td>{{ i.like }}</td>
+                    <td>{{ i.create_time }}</td>
+
+                    <td>
+                        <a href="{{ url_for('web.show_book', id=i.id) }}" class="btn btn-primary btncolor" role="button">More</a>
+                    </td>
+
+                    <td>
+                        <a href="{{ url_for('web.change_book',id=i.id) }}" class="btn btn-primary btncolor" role="button">Modify</a>
+                    </td>
+
+                    <td>
+                        <a href="{{ url_for('web.delete', id=i.id) }}" class="btn btn-primary btdelete" role="button">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <button type="button" class="btn btn-primary btncolor" data-toggle="modal" data-target="#ownModal">Add</button>
+
+
+    <nav aria-label="Search results pages">
+      <ul class="pagination">
+            {% if paginate.has_prev %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('web.Show_book_list') }}?page={{ paginate.prev_num }}">Previous</a>
+                </li>
+            {% endif %}
+
+
+      {% for page in paginate.iter_pages() %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('web.Show_book_list') }}?page={{ page }}">
+                {% if not page %}
+                    ...
+                {% else %}
+                    {{ page }}
+                {% endif %}
+            </a>
+        </li>
+      {% endfor %}
+
+        {% if paginate.has_next %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('web.Show_book_list') }}?page={{ paginate.next_num }}">Next</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ownModal" tabindex="-1" role="dialog" aria-labelledby="ownModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" id="ownModalLabel" align="center">Add new book</h4>
+                    <h5 class="modal-title cautioncolor" id="ownModalLabel" >(Note that the author and title characters should not be more than 25 characters, and the description segment should not be more than 1,000 characters)</h5>
+                </div>
+
+                <!-- modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2"> {{ wtf.quick_form(form) }}</div>
+                    </div>
+                </div>
+
+                 <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

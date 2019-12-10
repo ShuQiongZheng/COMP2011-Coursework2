@@ -1,0 +1,35 @@
+*{
+    font-family:"方正舒体";
+}
+
+.navcolor{
+    background-color: tomato;
+}
+
+.navtext{
+    color: white;
+    font-weight: bolder;
+}
+
+.btncolor{
+    background-color: tomato;
+}
+
+.btdelete{
+    background-color: #F0E68C;
+    color: black;
+}
+.cautioncolor{
+    color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
